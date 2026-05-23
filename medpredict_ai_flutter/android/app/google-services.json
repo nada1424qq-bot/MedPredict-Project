@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936369278381",
+    "project_id": "medpredict-9794c",
+    "storage_bucket": "medpredict-9794c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936369278381:android:92f66f148986610fda6524",
+        "android_client_info": {
+          "package_name": "com.example.medpredict_ai_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzCmFrS4Xx-ppryVo4G9LxPWnfb67pNxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

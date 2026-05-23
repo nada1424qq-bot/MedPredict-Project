@@ -1,0 +1,604 @@
+{
+  "project_name": "MedPredict AI - Pneumonia Detection App",
+  "description": "A Flutter mobile application for early pneumonia detection using AI, featuring patient history tracking, risk assessment, and smart health tips. Based on the 'MedPredict AI: Predictive Intelligence Model for Detecting Pneumonia' documentation.",
+  "milestone": "Milestone 1 - UI/UX Design with Fixed Data",
+  "technology_stack": {
+    "framework": "Flutter",
+    "language": "Dart",
+    "state_management": "Provider or Riverpod",
+    "routing": "GoRouter or Auto_route",
+    "design_system": "Material Design 3"
+  },
+  "project_structure": {
+    "lib": {
+      "main.dart": "Application entry point",
+      "config": {
+        "theme": {
+          "app_theme.dart": "App-wide theme configuration with light/dark modes",
+          "app_colors.dart": "Color palette (medical blues, whites, accent colors)",
+          "app_typography.dart": "Text styles and font definitions",
+          "app_dimensions.dart": "Spacing, padding, and dimension constants"
+        },
+        "routes": {
+          "app_routes.dart": "Route definitions and navigation logic",
+          "route_names.dart": "Route name constants"
+        },
+        "constants": {
+          "app_constants.dart": "Global application constants",
+          "assets_constants.dart": "Asset path constants",
+          "api_constants.dart": "API endpoints (for future integration)"
+        }
+      },
+      "core": {
+        "utils": {
+          "validators.dart": "Input validation utilities (email, password, phone)",
+          "date_formatter.dart": "Date and time formatting utilities",
+          "image_helper.dart": "Image handling utilities",
+          "snackbar_helper.dart": "Common snackbar messages"
+        },
+        "extensions": {
+          "context_extensions.dart": "BuildContext extensions for theme, navigation",
+          "string_extensions.dart": "String manipulation extensions",
+          "datetime_extensions.dart": "DateTime formatting extensions"
+        },
+        "widgets": {
+          "custom_app_bar.dart": "Reusable app bar widget",
+          "custom_button.dart": "Primary, secondary, outline buttons",
+          "custom_text_field.dart": "Styled text input fields",
+          "loading_indicator.dart": "Loading spinner widget",
+          "empty_state.dart": "Empty state placeholder widget",
+          "error_widget.dart": "Error display widget"
+        }
+      },
+      "screens": {
+        "common": {
+          "splash_screen.dart": "App launch screen with logo animation",
+          "onboarding_screen.dart": "Introduction slides for first-time users"
+        },
+        "auth": {
+          "welcome_screen.dart": "Welcome page with login/register options",
+          "login_screen.dart": "User/Admin login interface",
+          "register_screen.dart": "New user registration form"
+        },
+        "patient": {
+          "dashboard": {
+            "patient_dashboard_screen.dart": "Main patient home screen",
+            "widgets": {
+              "health_summary_card.dart": "Recent health status card",
+              "quick_action_buttons.dart": "Upload X-ray, view history buttons",
+              "health_tips_carousel.dart": "Rotating health tips display"
+            }
+          },
+          "xray_upload": {
+            "upload_xray_screen.dart": "Image upload interface",
+            "xray_preview_screen.dart": "Preview before submission",
+            "widgets": {
+              "image_picker_widget.dart": "Camera/gallery selector",
+              "upload_progress_widget.dart": "Upload progress indicator"
+            }
+          },
+          "results": {
+            "prediction_result_screen.dart": "Pneumonia detection result display",
+            "result_details_screen.dart": "Detailed analysis breakdown",
+            "widgets": {
+              "risk_gauge_widget.dart": "Visual risk level indicator",
+              "confidence_bar_widget.dart": "Confidence score bar chart",
+              "recommendation_card.dart": "Health recommendations display"
+            }
+          },
+          "history": {
+            "medical_history_screen.dart": "Timeline of past predictions",
+            "history_detail_screen.dart": "Individual record details",
+            "widgets": {
+              "timeline_item_widget.dart": "History timeline entry",
+              "comparison_chart_widget.dart": "Progress comparison chart"
+            }
+          },
+          "profile": {
+            "patient_profile_screen.dart": "User profile and settings",
+            "edit_profile_screen.dart": "Profile editing interface"
+          }
+        },
+        "admin": {
+          "dashboard": {
+            "admin_dashboard_screen.dart": "Admin control panel",
+            "widgets": {
+              "statistics_card.dart": "System usage statistics",
+              "recent_predictions_list.dart": "Latest predictions overview"
+            }
+          },
+          "users": {
+            "user_management_screen.dart": "User list and management",
+            "user_details_screen.dart": "Individual user details",
+            "widgets": {
+              "user_card_widget.dart": "User information card",
+              "user_actions_menu.dart": "Add/edit/delete user actions"
+            }
+          },
+          "dataset": {
+            "dataset_management_screen.dart": "AI model dataset management",
+            "upload_dataset_screen.dart": "Upload new training data"
+          },
+          "health_tips": {
+            "tips_management_screen.dart": "Manage health tips content",
+            "add_edit_tip_screen.dart": "Create/edit health tip"
+          },
+          "settings": {
+            "admin_settings_screen.dart": "System configuration settings"
+          }
+        }
+      },
+      "models": {
+        "user_model.dart": "User entity with userId, fullName, email, phone, dateJoined",
+        "admin_model.dart": "Admin entity with adminId, email",
+        "health_data_model.dart": "Health data entity with imageId, userId, imagePath, uploadDate, imageFormat",
+        "prediction_model.dart": "Prediction result with predictionId, imageId, result, confidenceScore, riskLevel, predictionDate",
+        "medical_history_model.dart": "Medical history record with historyId, userId, predictionId, notes, recordDate",
+        "health_tip_model.dart": "Health tip with tipId, tipText, category, riskLevel, createdDate",
+        "enums": {
+          "risk_level.dart": "Enum: MILD, MODERATE, SEVERE",
+          "prediction_result.dart": "Enum: NORMAL, PNEUMONIA",
+          "user_role.dart": "Enum: PATIENT, ADMIN"
+        }
+      },
+      "services": {
+        "auth_service.dart": "Authentication logic (login, register, logout) - Fixed data for Milestone 1",
+        "prediction_service.dart": "Prediction retrieval and management - Fixed data",
+        "history_service.dart": "Medical history operations - Fixed data",
+        "health_tips_service.dart": "Health tips retrieval - Fixed data",
+        "user_service.dart": "User profile management - Fixed data",
+        "storage_service.dart": "Local storage using shared_preferences for session data"
+      },
+      "data": {
+        "fixed_data": {
+          "users_data.dart": "Mock user accounts (5 patients, 2 admins)",
+          "predictions_data.dart": "Sample prediction results (10-15 records)",
+          "medical_history_data.dart": "Sample medical history records",
+          "health_tips_data.dart": "Pre-defined health tips (20+ tips)",
+          "xray_images_data.dart": "Asset paths to sample X-ray images"
+        }
+      }
+    },
+    "assets": {
+      "images": {
+        "logo": "app_logo.png, splash_logo.png",
+        "illustrations": "welcome_illustration.png, empty_history.png, success_illustration.png",
+        "sample_xrays": "normal_xray_1.jpg, pneumonia_xray_1.jpg, etc."
+      },
+      "icons": "Custom medical-themed icons if needed",
+      "fonts": "Poppins, Inter, or Roboto fonts"
+    }
+  },
+  "functional_requirements": {
+    "patient_features": [
+      {
+        "feature": "User Registration",
+        "description": "Allow new patients to create accounts with name, email, password, phone",
+        "screens": [
+          "register_screen.dart"
+        ],
+        "validation": [
+          "Email format",
+          "Password strength (min 8 chars)",
+          "Phone number format"
+        ]
+      },
+      {
+        "feature": "User Login",
+        "description": "Authenticate patients using email and password",
+        "screens": [
+          "login_screen.dart"
+        ],
+        "fixed_data": "Pre-defined user credentials in users_data.dart"
+      },
+      {
+        "feature": "Upload Chest X-ray",
+        "description": "Select X-ray image from camera or gallery for analysis",
+        "screens": [
+          "upload_xray_screen.dart",
+          "xray_preview_screen.dart"
+        ],
+        "fixed_data": "Return pre-defined prediction results from predictions_data.dart"
+      },
+      {
+        "feature": "View Prediction Results",
+        "description": "Display pneumonia detection result with confidence score and risk rating",
+        "screens": [
+          "prediction_result_screen.dart",
+          "result_details_screen.dart"
+        ],
+        "components": [
+          "Risk gauge (Mild/Moderate/Severe)",
+          "Confidence percentage",
+          "Result timestamp"
+        ]
+      },
+      {
+        "feature": "Medical History Tracking",
+        "description": "View chronological timeline of all past predictions",
+        "screens": [
+          "medical_history_screen.dart",
+          "history_detail_screen.dart"
+        ],
+        "features": [
+          "Timeline view",
+          "Filter by date",
+          "Compare results",
+          "Export option (future)"
+        ]
+      },
+      {
+        "feature": "Smart Health Tips",
+        "description": "Display AI-generated health recommendations based on risk level",
+        "screens": [
+          "patient_dashboard_screen.dart (carousel)",
+          "health_tips_detail_screen.dart"
+        ],
+        "fixed_data": "Context-aware tips from health_tips_data.dart"
+      },
+      {
+        "feature": "Profile Management",
+        "description": "View and edit user profile information",
+        "screens": [
+          "patient_profile_screen.dart",
+          "edit_profile_screen.dart"
+        ]
+      },
+      {
+        "feature": "Logout",
+        "description": "Securely log out and clear session",
+        "action": "Clear stored credentials and navigate to welcome screen"
+      }
+    ],
+    "admin_features": [
+      {
+        "feature": "Admin Login",
+        "description": "Authenticate admin using admin credentials",
+        "screens": [
+          "login_screen.dart"
+        ],
+        "fixed_data": "Admin accounts from users_data.dart"
+      },
+      {
+        "feature": "User Account Management",
+        "description": "View, add, update, delete patient accounts",
+        "screens": [
+          "user_management_screen.dart",
+          "user_details_screen.dart"
+        ],
+        "actions": [
+          "List all users",
+          "Search users",
+          "Add new user",
+          "Edit user",
+          "Delete user"
+        ]
+      },
+      {
+        "feature": "View All Predictions",
+        "description": "Monitor all pneumonia predictions in the system",
+        "screens": [
+          "admin_dashboard_screen.dart"
+        ],
+        "components": [
+          "Total predictions count",
+          "Recent predictions list",
+          "Statistics charts"
+        ]
+      },
+      {
+        "feature": "Dataset Management",
+        "description": "Upload and manage AI training datasets (UI only for Milestone 1)",
+        "screens": [
+          "dataset_management_screen.dart"
+        ],
+        "note": "Actual dataset upload deferred to future milestones"
+      },
+      {
+        "feature": "Health Tips Management",
+        "description": "Create, edit, delete health tips",
+        "screens": [
+          "tips_management_screen.dart",
+          "add_edit_tip_screen.dart"
+        ]
+      },
+      {
+        "feature": "System Configuration",
+        "description": "Access system settings and preferences",
+        "screens": [
+          "admin_settings_screen.dart"
+        ]
+      }
+    ]
+  },
+  "ui_ux_requirements": {
+    "design_principles": [
+      "Clean and minimalist medical interface",
+      "High contrast for readability (important for medical apps)",
+      "Accessibility: Large touch targets (min 48x48dp), screen reader support",
+      "Consistent spacing using 8dp grid system",
+      "Smooth animations and transitions (300ms duration)",
+      "Progressive disclosure - show critical info first"
+    ],
+    "color_scheme": {
+      "primary": "#2196F3 (Medical Blue)",
+      "secondary": "#4CAF50 (Success Green)",
+      "accent": "#FF9800 (Warning Orange)",
+      "error": "#F44336 (Error Red)",
+      "background": "#FAFAFA (Light Gray)",
+      "surface": "#FFFFFF (White)",
+      "text_primary": "#212121 (Dark Gray)",
+      "text_secondary": "#757575 (Medium Gray)"
+    },
+    "typography": {
+      "headings": "Poppins Bold (24sp, 20sp, 18sp)",
+      "body": "Poppins Regular (16sp, 14sp)",
+      "captions": "Poppins Light (12sp)",
+      "line_height": "1.5x for readability"
+    },
+    "screen_specifications": {
+      "welcome_screen": {
+        "components": [
+          "App logo",
+          "Tagline: 'Early Detection, Better Outcomes'",
+          "Login button",
+          "Register button"
+        ],
+        "design": "Full-screen gradient background, centered logo, bottom action buttons"
+      },
+      "login_screen": {
+        "components": [
+          "Email field",
+          "Password field",
+          "Remember me checkbox",
+          "Login button",
+          "Forgot password link",
+          "Register link"
+        ],
+        "validation": "Real-time field validation with error messages"
+      },
+      "register_screen": {
+        "components": [
+          "Full name field",
+          "Email field",
+          "Phone field",
+          "Password field",
+          "Confirm password field",
+          "Terms checkbox",
+          "Register button"
+        ],
+        "validation": "Multi-step validation with progress indicator"
+      },
+      "patient_dashboard": {
+        "sections": [
+          "Header: Welcome message + profile picture",
+          "Health summary card: Latest result or 'No scans yet'",
+          "Quick actions: Upload X-ray, View History buttons",
+          "Health tips carousel: Swipeable tips based on user status",
+          "Bottom navigation: Home, History, Profile"
+        ],
+        "design": "Card-based layout, floating action button for upload"
+      },
+      "upload_xray_screen": {
+        "components": [
+          "Dotted upload area",
+          "Camera icon",
+          "Gallery icon",
+          "Upload instructions",
+          "Preview thumbnail",
+          "Submit button"
+        ],
+        "interaction": "Tap to select image → Preview → Confirm → Processing animation → Result"
+      },
+      "prediction_result_screen": {
+        "components": [
+          "Result badge: NORMAL (green) or PNEUMONIA (red)",
+          "Confidence meter: Circular progress (0-100%)",
+          "Risk gauge: Color-coded indicator (Mild/Moderate/Severe)",
+          "Timestamp: When analysis was performed",
+          "Recommendations card: Next steps based on result",
+          "Save to history button",
+          "Share result button (future)"
+        ],
+        "design": "Top result, middle metrics, bottom actions - clear visual hierarchy"
+      },
+      "medical_history_screen": {
+        "components": [
+          "Date filter dropdown",
+          "Timeline list: Date markers with result cards",
+          "Each card shows: Date, Result, Risk level, Thumbnail",
+          "Tap card to view details",
+          "Empty state: 'No history yet' illustration"
+        ],
+        "design": "Vertical timeline with chronological grouping"
+      },
+      "admin_dashboard": {
+        "sections": [
+          "Statistics cards: Total users, Total predictions, Recent uploads",
+          "Chart: Predictions over time (line chart)",
+          "Recent predictions table: User, Result, Date, Risk",
+          "Quick actions: Manage users, Manage tips, Settings"
+        ],
+        "design": "Data-dense but organized, use charts for insights"
+      }
+    }
+  },
+  "fixed_data_specifications": {
+    "users": [
+      {
+        "userId": 1,
+        "fullName": "Ahmed Mohammed",
+        "email": "ahmed.m@example.com",
+        "password": "patient123",
+        "phone": "+966501234567",
+        "dateJoined": "2025-01-15T10:30:00Z",
+        "role": "PATIENT"
+      },
+      {
+        "userId": 2,
+        "fullName": "Fatima Ali",
+        "email": "fatima.a@example.com",
+        "password": "patient123",
+        "phone": "+966502345678",
+        "dateJoined": "2025-01-20T14:15:00Z",
+        "role": "PATIENT"
+      },
+      {
+        "userId": 3,
+        "fullName": "Dr. Sara Hassan",
+        "email": "admin@medpredict.com",
+        "password": "admin123",
+        "phone": "+966503456789",
+        "role": "ADMIN"
+      }
+    ],
+    "predictions": [
+      {
+        "predictionId": 1,
+        "imageId": 1,
+        "userId": 1,
+        "result": "NORMAL",
+        "confidenceScore": 0.92,
+        "riskLevel": "MILD",
+        "predictionDate": "2025-01-25T09:30:00Z",
+        "imagePath": "assets/images/sample_xrays/normal_xray_1.jpg"
+      },
+      {
+        "predictionId": 2,
+        "imageId": 2,
+        "userId": 1,
+        "result": "PNEUMONIA",
+        "confidenceScore": 0.87,
+        "riskLevel": "MODERATE",
+        "predictionDate": "2025-01-28T11:45:00Z",
+        "imagePath": "assets/images/sample_xrays/pneumonia_xray_1.jpg"
+      },
+      {
+        "predictionId": 3,
+        "imageId": 3,
+        "userId": 2,
+        "result": "PNEUMONIA",
+        "confidenceScore": 0.94,
+        "riskLevel": "SEVERE",
+        "predictionDate": "2025-01-29T15:20:00Z",
+        "imagePath": "assets/images/sample_xrays/pneumonia_xray_2.jpg"
+      }
+    ],
+    "health_tips": [
+      {
+        "tipId": 1,
+        "tipText": "Stay hydrated! Drink at least 8 glasses of water daily to help your lungs function properly.",
+        "category": "Prevention",
+        "riskLevel": "MILD",
+        "createdDate": "2025-01-10T00:00:00Z"
+      },
+      {
+        "tipId": 2,
+        "tipText": "If you have pneumonia symptoms, seek medical attention immediately. Early treatment is crucial.",
+        "category": "Treatment",
+        "riskLevel": "SEVERE",
+        "createdDate": "2025-01-10T00:00:00Z"
+      },
+      {
+        "tipId": 3,
+        "tipText": "Wash your hands frequently with soap and water for at least 20 seconds to prevent respiratory infections.",
+        "category": "Prevention",
+        "riskLevel": "MILD",
+        "createdDate": "2025-01-10T00:00:00Z"
+      }
+    ]
+  },
+  "code_quality_standards": {
+    "architecture": "Clean Architecture with separation of concerns",
+    "naming_conventions": {
+      "files": "snake_case (e.g., patient_dashboard_screen.dart)",
+      "classes": "PascalCase (e.g., PatientDashboardScreen)",
+      "variables": "camelCase (e.g., predictionResult)",
+      "constants": "lowerCamelCase with const (e.g., const primaryColor)"
+    },
+    "code_organization": [
+      "One widget per file for screens",
+      "Reusable widgets in core/widgets or screen-specific widgets folders",
+      "Models use freezed or built_value for immutability",
+      "Services return Future<Result<T, Error>> for error handling",
+      "Use dependency injection (get_it or riverpod providers)"
+    ],
+    "documentation": [
+      "Dartdoc comments for all public classes and methods",
+      "Inline comments for complex logic",
+      "README.md with setup instructions and architecture overview"
+    ],
+    "testing_setup": [
+      "Unit tests for services and models (test/ folder)",
+      "Widget tests for critical UI components",
+      "Golden tests for screen snapshots (optional for Milestone 1)"
+    ]
+  },
+  "packages_to_use": {
+    "essential": [
+      "provider ^6.1.0 or riverpod ^2.4.0 - State management",
+      "go_router ^13.0.0 - Navigation and routing",
+      "shared_preferences ^2.2.0 - Local data persistence",
+      "flutter_svg ^2.0.0 - SVG icon support",
+      "cached_network_image ^3.3.0 - Image caching (future API calls)",
+      "intl ^0.18.0 - Date formatting and localization"
+    ],
+    "ui_enhancements": [
+      "google_fonts ^6.1.0 - Custom fonts",
+      "fl_chart ^0.66.0 - Charts for statistics",
+      "lottie ^3.0.0 - Animated illustrations",
+      "shimmer ^3.0.0 - Loading skeleton screens",
+      "flutter_animate ^4.5.0 - Smooth animations"
+    ],
+    "utilities": [
+      "image_picker ^1.0.0 - Camera/gallery access",
+      "path_provider ^2.1.0 - File system paths",
+      "uuid ^4.0.0 - Unique ID generation",
+      "logger ^2.0.0 - Debug logging",
+      "freezed ^2.4.0 - Immutable models (dev dependency)"
+    ]
+  },
+  "deliverables_milestone_1": [
+    "✅ Complete Flutter project structure with all folders",
+    "✅ All screen UI implementations with navigation",
+    "✅ Fixed data models and services",
+    "✅ Authentication flow (login/register/logout) with fixed credentials",
+    "✅ Patient dashboard with health summary and tips",
+    "✅ X-ray upload flow with mock prediction results",
+    "✅ Medical history timeline with sample data",
+    "✅ Admin dashboard with user management UI",
+    "✅ Responsive design for phones and tablets",
+    "✅ Dark mode support (optional but recommended)",
+    "✅ README with setup and run instructions"
+  ],
+  "development_workflow": {
+    "step_1": "Setup Flutter project and folder structure",
+    "step_2": "Configure theme, colors, typography in config/",
+    "step_3": "Create all data models in models/",
+    "step_4": "Populate fixed data in data/fixed_data/",
+    "step_5": "Implement services with fixed data responses",
+    "step_6": "Build core reusable widgets",
+    "step_7": "Implement authentication screens",
+    "step_8": "Implement patient screens (dashboard, upload, results, history)",
+    "step_9": "Implement admin screens (dashboard, users, tips)",
+    "step_10": "Setup navigation and routing",
+    "step_11": "Polish UI/UX with animations and transitions",
+    "step_12": "Test on multiple screen sizes and orientations",
+    "step_13": "Document code and create README"
+  },
+  "future_milestones": {
+    "milestone_2": "Backend integration with Firebase/REST API, real AI model integration",
+    "milestone_3": "User testing, performance optimization, security enhancements",
+    "milestone_4": "Deployment to Google Play Store, analytics integration"
+  },
+  "success_criteria": [
+    "All 15+ screens implemented with pixel-perfect design",
+    "Smooth navigation between all screens without errors",
+    "Fixed data properly displayed across app",
+    "Form validation working correctly",
+    "Responsive layout on various screen sizes",
+    "Clean, commented, and scalable code structure",
+    "No hardcoded strings (use localization keys even if not translated yet)",
+    "Consistent UI/UX aligned with medical app standards"
+  ]
+}
